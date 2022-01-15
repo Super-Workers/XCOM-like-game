@@ -16,7 +16,10 @@ public class Camera : MonoBehaviour
 
     public Vector3 newZoom;
     public Vector3 newPosition;
-    public Quaternion newRotation; 
+    public Quaternion newRotation;
+
+    public static object main { get; internal set; }
+
     void Start()
     {
         newPosition = transform.position;
