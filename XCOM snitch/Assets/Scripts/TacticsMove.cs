@@ -30,8 +30,9 @@ public class TacticsMove : MonoBehaviour
     bool movingEdge = false;
     Vector3 jumpTarget;
 
-    public Tile actualTargetTile;
+    public Animator animator;
 
+    public Tile actualTargetTile;
     protected void Init()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -39,6 +40,8 @@ public class TacticsMove : MonoBehaviour
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
         TurnManager.AddUnit(this);
+
+        animator = GetComponent<Animator>();
     }
 
     public void GetCurrentTile()

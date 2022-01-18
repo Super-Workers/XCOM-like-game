@@ -25,10 +25,12 @@ public class PlayerMove : TacticsMove
         {
             FindSelectableTiles();
             CheckMouse();
+            animator.SetBool("Run", false);
         }
         else
         {
             Move();
+            animator.SetBool("Run", true);
         }
 	}
 
