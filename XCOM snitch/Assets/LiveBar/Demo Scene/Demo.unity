@@ -553,26 +553,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 83114639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0c2fc4eee89ae49967695bc5c56db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   showBar: 1
   totalLive: 100
   currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
+  barWidth: 80
+  barHeight: 10
+  yDelta: 0
   gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
   gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
   topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
   bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
   showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  labelColor: {r: 1, g: 0, b: 0, a: 1}
   outlined: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
+  fontSize: 12
+  fontStyle: 1
 --- !u!136 &83114642
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1084,23 +1084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &157476537
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5326,23 +5309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1156656746
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6242,23 +6208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1295085368
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7005,23 +6954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1424788032
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7169,23 +7101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1441440230
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7272,23 +7187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1446748777
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8201,23 +8099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!1 &1588310147
 GameObject:
   m_ObjectHideFlags: 0
@@ -9033,23 +8914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1712600292
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9300,23 +9164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &1739095765
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10976,23 +10823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &2075667148
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11202,23 +11032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb368c4cf6384880baed0dd11f3ecf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showBar: 1
-  totalLive: 100
-  currentLive: 100
-  barWidth: 50
-  barHeight: 7
-  yDelta: 2
-  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
-  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
-  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
-  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
-  showText: 1
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  outlined: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  textFont: {fileID: 0}
-  fontSize: 10
-  fontStyle: 0
 --- !u!136 &2105219813
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6129332811949994250}
   - component: {fileID: 6129332811949994249}
+  - component: {fileID: 8785439578957135632}
   m_Layer: 0
   m_Name: Camera Rig
   m_TagString: Untagged
@@ -137,3 +138,21 @@ MonoBehaviour:
   newZoom: {x: 0, y: 0, z: 0}
   newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8785439578957135632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129332811949994248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956920f21c81eef42b83d0bd1b00d364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fogOfWarPlane: {fileID: 0}
+  m_player: {fileID: 0}
+  m_fogLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  m_radius: 4

@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2683315771454747430}
-  - component: {fileID: 6439338090709908490}
+  - component: {fileID: 2882432900736888696}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -475,25 +475,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
---- !u!95 &6439338090709908490
-Animator:
-  serializedVersion: 3
+--- !u!114 &2882432900736888696
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6115045630750510043}
   m_Enabled: 1
-  m_Avatar: {fileID: -1727686231712457981}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0c2fc4eee89ae49967695bc5c56db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showBar: 1
+  actionOne: 1
+  actionTwo: 1
+  currentAction: 2
+  totalLive: 100
+  currentLive: 100
+  barWidth: 140
+  actWidth: 85
+  barHeight: 40
+  yDelta: 2
+  gradientTop: {r: 0.6666667, g: 1, b: 0.65882355, a: 0.8}
+  gradientBottom: {r: 0.011764706, g: 0.3137255, b: 0.05882353, a: 0.8}
+  topLeftBorder: {r: 0, g: 0, b: 0, a: 0.8}
+  bottomRightBorder: {r: 0, g: 0, b: 0, a: 0.6}
+  showText: 0
+  labelColor: {r: 1, g: 0, b: 0, a: 1}
+  outlined: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  textFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  fontSize: 18
+  fontStyle: 1
+  bar: {fileID: 2800000, guid: 2c91392838b571b4bafcbf339f395b86, type: 3}
+  bar75: {fileID: 2800000, guid: d583b8c6d101ba94e9f2a50f40771171, type: 3}
+  bar50: {fileID: 2800000, guid: 2dcf4de41e700fb49b0c7d9af80c6729, type: 3}
+  bar25: {fileID: 2800000, guid: 184feee295b4a7144a792e24eebf22e3, type: 3}
+  bar0: {fileID: 2800000, guid: 156613165849c934584a4e45f58ca499, type: 3}
+  actionTexture: {fileID: 2800000, guid: aae9d539e740ac746bd19ba7cf5c9c9b, type: 3}
+  actionTextureOFF: {fileID: 2800000, guid: 66459a043690aa148b595dd0c4570308, type: 3}
 --- !u!1 &6691827934594092324
 GameObject:
   m_ObjectHideFlags: 0

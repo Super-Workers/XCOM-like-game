@@ -39,7 +39,7 @@ public class PlayerMove : TacticsMove
             Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Ground")))
             {
                 if (hit.collider.tag == "Tile")
                 {
