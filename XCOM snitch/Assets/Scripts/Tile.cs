@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     public bool target = false;
     public bool selectable = false;
     public bool selectableTwo = false;
+    public bool notToMove = false;
 
     public List<Tile> adjacencyList = new List<Tile>();
 
@@ -40,9 +41,13 @@ public class Tile : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (selectable)
+        else if (selectable && !notToMove)
         {
             GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if (selectable && notToMove)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
         }
         else if (visited)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TacticsMove : MonoBehaviour 
 {
     public bool turn = false;
+    public bool jumping = false;
 
     List<Tile> selectableTiles = new List<Tile>();
     List<Tile> selectableTwoTiles = new List<Tile>();
@@ -17,10 +18,10 @@ public class TacticsMove : MonoBehaviour
     public int move = 5;
     public int moveTwo = 9;
     public float jumpHeight = 1;
-    public float moveSpeed = 5;
+    public float moveSpeed = 3;
     public float jumpVelocity = 4.5f;
 
-    Vector3 velocity = new Vector3();
+    public Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
 
     float halfHeight = 0;

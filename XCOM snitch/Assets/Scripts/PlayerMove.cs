@@ -15,6 +15,7 @@ public class PlayerMove : TacticsMove
 	void Update () 
 	{
         Debug.DrawRay(transform.position, transform.forward);
+        Debug.DrawRay(transform.position, transform.up);
 
         if (!turn)
         {
@@ -26,13 +27,38 @@ public class PlayerMove : TacticsMove
             FindSelectableTiles();
             CheckMouse();
             animator.SetBool("Run", false);
+            jumping = false;
         }
         else
         {
             Move();
+
+            Ray ray = new Ray(transform.position, transform.up);
+
+            RaycastHit hit;
+            
+            if (Physics.Raycast(ray, out hit, 1, 1 << LayerMask.NameToLayer("forJump")))
+            {
+                if (!jumping)
+                {
+                    animator.SetTrigger("Jump");
+                    jumping = true;
+                    moveSpeed = 1;
+                }
+            }
+            else
+            {
+                moveSpeed = 3;
+            }
+                       
             animator.SetBool("Run", true);
         }
 	}
+
+    public void ChangeMoveSpeed()
+    {
+        moveSpeed = 3;
+    }
 
     void CheckMouse()
     {
