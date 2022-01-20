@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TacticsMove : MonoBehaviour 
+public class TacticsMove : LiveBar 
 {
     public bool turn = false;
     public bool jumping = false;
@@ -15,6 +15,7 @@ public class TacticsMove : MonoBehaviour
     Tile currentTile;
 
     public bool moving = false;
+    public bool stopMoving = false;
     public int move = 5;
     public int moveTwo = 9;
     public float jumpHeight = 1;
@@ -81,10 +82,8 @@ public class TacticsMove : MonoBehaviour
         GetCurrentTile();
 
         Queue<Tile> process = new Queue<Tile>();
-        Queue<Tile> processTwo = new Queue<Tile>();
 
         process.Enqueue(currentTile);
-        processTwo.Enqueue(currentTile);
         currentTile.visited = true;
         //currentTile.parent = ??  leave as null 
 
@@ -110,28 +109,6 @@ public class TacticsMove : MonoBehaviour
             }
         }
 
-        while (processTwo.Count > 0)
-        {
-            Tile t = processTwo.Dequeue();
-
-            selectableTwoTiles.Add(t);
-            t.selectableTwo = true;
-            t.selectable = false;
-
-            if (t.distance > move && t.distance < moveTwo)
-            {
-                foreach (Tile tile in t.adjacencyList)
-                {
-                    if (!tile.visited)
-                    {
-                        tile.parent = t;
-                        tile.visited = true;
-                        tile.distance = 1 + t.distance;
-                        processTwo.Enqueue(tile);
-                    }
-                }
-            }
-        }
     }
 
     public void MoveToTile(Tile tile)

@@ -6,6 +6,8 @@ public class PlayerMove : TacticsMove
 {
 
     // Use this for initialization
+    public GameObject player1;
+    public GameObject player2;
 	void Start () 
 	{
         Init();
@@ -28,10 +30,18 @@ public class PlayerMove : TacticsMove
             CheckMouse();
             animator.SetBool("Run", false);
             jumping = false;
+            
+            if (stopMoving)
+            {
+                stopMoving = false;
+                currentAction -= 1;
+            }
         }
-        else
+        else if (currentAction != 0)
         {
             Move();
+
+            stopMoving = true;
 
             Ray ray = new Ray(transform.position, transform.up);
 
