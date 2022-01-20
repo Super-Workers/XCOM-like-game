@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : TacticsMove 
 {
 
-	// Use this for initialization
+    // Use this for initialization
 	void Start () 
 	{
         Init();

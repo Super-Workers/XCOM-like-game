@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
     public bool selectableTwo = false;
     public bool notToMove = false;
 
+    public GameObject player;
     public List<Tile> adjacencyList = new List<Tile>();
 
     //Needed BFS (breadth first search)
@@ -28,6 +29,7 @@ public class Tile : MonoBehaviour
 	void Start () 
 	{
         GetComponent<Renderer>().material.color = Color.clear;
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -100,10 +102,26 @@ public class Tile : MonoBehaviour
             if (tile != null && tile.walkable)
             {
                 RaycastHit hit;
+                Debug.DrawRay(player.transform.position, player.transform.up, Color.yellow);
 
                 if (!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
                 {
-                    adjacencyList.Add(tile);
+                    if (!Physics.Raycast(tile.transform.position + new Vector3(0.6f, 0, 0), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence")) 
+                    && !Physics.Raycast(tile.transform.position + new Vector3(-0.6f, 0, 0), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence")) 
+                    && !Physics.Raycast(tile.transform.position + new Vector3(0, 0, 0.6f), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence"))
+                    && !Physics.Raycast(tile.transform.position + new Vector3(0, 0, -0.6f), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence")) 
+                    && Physics.Raycast(player.transform.position, player.transform.up, out hit, 3, 1 << LayerMask.NameToLayer("Inside")))
+                    {
+                        adjacencyList.Add(tile);
+                    }
+                    else if(!Physics.Raycast(tile.transform.position + new Vector3(0.4f, 0, 0), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence")) 
+                    && !Physics.Raycast(tile.transform.position + new Vector3(-0.4f, 0, 0), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence")) 
+                    && !Physics.Raycast(tile.transform.position + new Vector3(0, 0, 0.4f), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence"))
+                    && !Physics.Raycast(tile.transform.position + new Vector3(0, 0, -0.4f), Vector3.up, out hit, 1, 1 << LayerMask.NameToLayer("Fence")) 
+                    && !Physics.Raycast(player.transform.position, player.transform.up, out hit, 3, 1 << LayerMask.NameToLayer("Inside")))
+                    {
+                        adjacencyList.Add(tile);
+                    }
                 }
             }
         }
