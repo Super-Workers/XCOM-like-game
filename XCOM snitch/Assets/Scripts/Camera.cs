@@ -17,6 +17,8 @@ public class Camera : MonoBehaviour
     public Vector3 newZoom;
     public Vector3 newPosition;
     public Quaternion newRotation;
+    public GameObject roof;
+    public GameObject roofTiles;
 
     public static object main { get; internal set; }
 
@@ -31,6 +33,15 @@ public class Camera : MonoBehaviour
     void Update()
     {
         HandleMovementInput();
+
+        if (newZoom.z >= 0 && !roofTiles.activeInHierarchy)
+        {
+            roof.SetActive(false);
+        }
+        else
+        {
+            roof.SetActive(true);
+        }
     }
 
     void HandleMovementInput()

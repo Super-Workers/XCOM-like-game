@@ -6,12 +6,23 @@ public class PlayerMove : TacticsMove
 {
 
     // Use this for initialization
+    public GameObject roofTiles;
     public GameObject player1;
     public GameObject player2;
+    public bool isUp = false;
 	void Start () 
 	{
         Init();
+        roofTiles.SetActive(false);
 	}
+
+    void Stop()
+    {
+        RemoveSelectableTiles();
+        player2.GetComponent<Player2Move>().enabled = true;
+        player1.GetComponent<PlayerMove>().enabled = false;
+        currentAction = 2;
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -24,22 +35,62 @@ public class PlayerMove : TacticsMove
             return;
         }
 
+        if (currentAction == 2)
+        {
+            Start();
+        }
+
+        if (currentAction == 0 || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Stop();
+        }
+
         if (!moving)
         {
-            FindSelectableTiles();
-            CheckMouse();
             animator.SetBool("Run", false);
             jumping = false;
+            
+            if (currentAction > 0)
+            {
+                FindSelectableTiles();
+                CheckMouse();
+            }
             
             if (stopMoving)
             {
                 stopMoving = false;
                 currentAction -= 1;
             }
+
+            Ray ray = new Ray(transform.position, transform.up);
+
+            RaycastHit hit;
+            
+            if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderUp")) && !isUp)
+            {
+                roofTiles.SetActive(true);
+                transform.position += new Vector3(1, 3, 0);
+            }
+
+            if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderDown")) && isUp)
+            {
+                roofTiles.SetActive(false);
+                transform.position += new Vector3(-1, -3, 0);
+            }
+
         }
         else if (currentAction != 0)
         {
             Move();
+
+            if (transform.position.y > 3)
+            {
+                isUp = true;
+            }
+            else
+            {
+                isUp = false;
+            }
 
             stopMoving = true;
 
@@ -63,6 +114,7 @@ public class PlayerMove : TacticsMove
                        
             animator.SetBool("Run", true);
         }
+        
 	}
 
     public void ChangeMoveSpeed()

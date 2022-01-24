@@ -48,7 +48,13 @@ public class TacticsMove : LiveBar
 
     public void GetCurrentTile()
     {
-        currentTile = GetTargetTile(gameObject);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1))
+        {
+            currentTile = hit.collider.GetComponent<Tile>();
+        }
+        
         currentTile.current = true;
     }
 
