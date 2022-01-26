@@ -4,86 +4,113 @@ using UnityEngine;
 
 public class PlayerMove : TacticsMove 
 {
-
     // Use this for initialization
     public GameObject roofTiles;
     public GameObject player1;
     public GameObject player2;
     public bool isUp = false;
+    int currentPlayer1Action = 2;
+    int currentPlayer2Action = 2;
 	void Start () 
 	{
-        Init();
-        roofTiles.SetActive(false);
+        Init(); 
 	}
 
-    void Stop()
+    void Awake()
     {
-        RemoveSelectableTiles();
-        player2.GetComponent<Player2Move>().enabled = true;
-        player1.GetComponent<PlayerMove>().enabled = false;
-        currentAction = 2;
+        player1 = GameObject.FindGameObjectWithTag("Player");
+        player2 = GameObject.FindGameObjectWithTag("Player 2");
+        roofTiles = GameObject.FindGameObjectWithTag("Roof");
+        currentPlayer = player1;
+        Tile.player = currentPlayer;
+        animator = currentPlayer.GetComponent<Animator>();
+        roofTiles.SetActive(false);
     }
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
-        Debug.DrawRay(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.up);
+        Debug.DrawRay(currentPlayer.transform.position, currentPlayer.transform.forward);
+        Debug.DrawRay(currentPlayer.transform.position, currentPlayer.transform.up);
+
+        Tile.player = currentPlayer;
 
         if (!turn)
         {
             return;
         }
 
-        if (currentAction == 2)
-        {
-            Start();
-        }
-
-        if (currentAction == 0 || Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Stop();
-        }
-
         if (!moving)
         {
             animator.SetBool("Run", false);
             jumping = false;
-            
-            if (currentAction > 0)
+            FindSelectableTiles();
+            CheckMouse();
+
+            if (currentPlayer == player1 && player1.GetComponent<LiveBar>().currentAction != 0)
             {
-                FindSelectableTiles();
-                CheckMouse();
+                currentPlayer1Action = player1.GetComponent<LiveBar>().currentAction;
+            }
+            else if (currentPlayer == player2 && player2.GetComponent<LiveBar>().currentAction != 0)
+            {
+                currentPlayer2Action = player2.GetComponent<LiveBar>().currentAction;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1) && player1.GetComponent<LiveBar>().currentAction != 0)
+            {
+                currentPlayer = player1;
+                player1.GetComponent<LiveBar>().currentAction = currentPlayer1Action;
+                animator = player1.GetComponent<Animator>();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && player2.GetComponent<LiveBar>().currentAction != 0)
+            {
+                currentPlayer = player2;
+                player2.GetComponent<LiveBar>().currentAction = currentPlayer2Action;
+                animator = player2.GetComponent<Animator>();
             }
             
             if (stopMoving)
             {
                 stopMoving = false;
-                currentAction -= 1;
+                currentPlayer.GetComponent<LiveBar>().currentAction -= 1;
+                if (currentPlayer.GetComponent<LiveBar>().currentAction == 0 && currentPlayer != player2) 
+                {
+                    currentPlayer = player2;
+                    currentPlayer1Action = 2;
+                    player2.GetComponent<LiveBar>().currentAction = currentPlayer2Action;
+                    animator = player2.GetComponent<Animator>();
+                }
+                else if (currentPlayer.GetComponent<LiveBar>().currentAction == 0 && currentPlayer == player2)
+                {
+                    currentPlayer = player1;
+                    currentPlayer2Action = 2;
+                    player1.GetComponent<LiveBar>().currentAction = currentPlayer1Action;
+                    animator = player1.GetComponent<Animator>();
+                }
             }
 
-            Ray ray = new Ray(transform.position, transform.up);
+            Ray ray = new Ray(currentPlayer.transform.position, currentPlayer.transform.up);
 
             RaycastHit hit;
             
             if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderUp")) && !isUp)
             {
                 roofTiles.SetActive(true);
-                transform.position += new Vector3(1, 3, 0);
+                currentPlayer.transform.position += new Vector3(1, 3, 0);
             }
 
             if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderDown")) && isUp)
             {
                 roofTiles.SetActive(false);
-                transform.position += new Vector3(-1, -3, 0);
+                currentPlayer.transform.position += new Vector3(-1, -3, 0);
             }
 
         }
-        else if (currentAction != 0)
+        else 
         {
             Move();
 
-            if (transform.position.y > 3)
+            if (currentPlayer.transform.position.y > 3)
             {
                 isUp = true;
             }
@@ -94,7 +121,7 @@ public class PlayerMove : TacticsMove
 
             stopMoving = true;
 
-            Ray ray = new Ray(transform.position, transform.up);
+            Ray ray = new Ray(currentPlayer.transform.position, currentPlayer.transform.up);
 
             RaycastHit hit;
             

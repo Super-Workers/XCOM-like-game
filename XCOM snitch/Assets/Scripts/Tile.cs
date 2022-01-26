@@ -7,11 +7,11 @@ public class Tile : MonoBehaviour
     public bool walkable = true;
     public bool current = false;
     public bool target = false;
+    public bool underPlayers = false;
     public bool selectable = false;
     public bool selectableTwo = false;
     public bool notToMove = false;
-
-    public GameObject player;
+    public static GameObject player;
     public List<Tile> adjacencyList = new List<Tile>();
 
     //Needed BFS (breadth first search)
@@ -29,7 +29,6 @@ public class Tile : MonoBehaviour
 	void Start () 
 	{
         GetComponent<Renderer>().material.color = Color.clear;
-        player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -59,6 +58,10 @@ public class Tile : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = Color.yellow;
         }
+        else if (underPlayers)
+        {
+            GetComponent<Renderer>().material.color = Color.gray;
+        }
         else
         {
             GetComponent<Renderer>().material.color = Color.clear;
@@ -71,6 +74,7 @@ public class Tile : MonoBehaviour
 
         current = false;
         target = false;
+        underPlayers = false;
         selectable = false;
         selectableTwo = false;
 
@@ -121,6 +125,14 @@ public class Tile : MonoBehaviour
                     && !Physics.Raycast(player.transform.position, player.transform.up, out hit, 3, 1 << LayerMask.NameToLayer("Inside")))
                     {
                         adjacencyList.Add(tile);
+                    }
+                }
+
+                if (Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
+                {
+                    if (hit.collider.tag == "Player" || hit.collider.tag == "Player 2")
+                    {
+                        tile.underPlayers = true;
                     }
                 }
             }

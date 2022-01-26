@@ -157,4 +157,4 @@ MonoBehaviour:
   m_fogLayer:
     serializedVersion: 2
     m_Bits: 64
-  m_radius: 3
+  m_radius: 4

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TacticsMove : LiveBar 
+public class TacticsMove : MonoBehaviour 
 {
     public bool turn = false;
     public bool jumping = false;
+    public GameObject currentPlayer;
 
     List<Tile> selectableTiles = new List<Tile>();
     List<Tile> selectableTwoTiles = new List<Tile>();
@@ -39,18 +40,15 @@ public class TacticsMove : LiveBar
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
-        halfHeight = GetComponent<Collider>().bounds.extents.y;
+        halfHeight = currentPlayer.GetComponent<Collider>().bounds.extents.y;
 
         TurnManager.AddUnit(this);
-
-        animator = GetComponent<Animator>();
     }
 
     public void GetCurrentTile()
     {
-
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1))
+        if (Physics.Raycast(currentPlayer.transform.position, -currentPlayer.transform.up, out hit, 1))
         {
             currentTile = hit.collider.GetComponent<Tile>();
         }
@@ -141,9 +139,9 @@ public class TacticsMove : LiveBar
             //Calculate the unit's position on top of the target tile
             target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
 
-            if (Vector3.Distance(transform.position, target) >= 0.05f)
+            if (Vector3.Distance(currentPlayer.transform.position, target) >= 0.05f)
             {
-                bool jump = transform.position.y != target.y;
+                bool jump = currentPlayer.transform.position.y != target.y;
 
                 if (jump)
                 {
@@ -156,13 +154,13 @@ public class TacticsMove : LiveBar
                 }
 
                 //Locomotion
-                transform.forward = heading;
-                transform.position += velocity * Time.deltaTime;
+                currentPlayer.transform.forward = heading;
+                currentPlayer.transform.position += velocity * Time.deltaTime;
             }
             else
             {
                 //Tile center reached
-                transform.position = target;
+                currentPlayer.transform.position = target;
                 path.Pop();
             }
         }
@@ -193,7 +191,7 @@ public class TacticsMove : LiveBar
 
     void CalculateHeading(Vector3 target)
     {
-        heading = target - transform.position;
+        heading = target - currentPlayer.transform.position;
         heading.Normalize();
     }
 
@@ -225,17 +223,17 @@ public class TacticsMove : LiveBar
     void PrepareJump(Vector3 target)
     {
         float targetY = target.y;
-        target.y = transform.position.y;
+        target.y = currentPlayer.transform.position.y;
 
         CalculateHeading(target);
 
-        if (transform.position.y > targetY)
+        if (currentPlayer.transform.position.y > targetY)
         {
             fallingDown = false;
             jumpingUp = false;
             movingEdge = true;
 
-            jumpTarget = transform.position + (target - transform.position) / 2.0f;
+            jumpTarget = currentPlayer.transform.position + (target - currentPlayer.transform.position) / 2.0f;
         }
         else
         {
@@ -245,7 +243,7 @@ public class TacticsMove : LiveBar
 
             velocity = heading * moveSpeed / 3.0f;
 
-            float difference = targetY - transform.position.y;
+            float difference = targetY - currentPlayer.transform.position.y;
 
             velocity.y = jumpVelocity * (0.5f + difference / 2.0f);
         }
@@ -255,15 +253,15 @@ public class TacticsMove : LiveBar
     {
         velocity += Physics.gravity * Time.deltaTime;
 
-        if (transform.position.y <= target.y)
+        if (currentPlayer.transform.position.y <= target.y)
         {
             fallingDown = false;
             jumpingUp = false;
             movingEdge = false;
 
-            Vector3 p = transform.position;
+            Vector3 p = currentPlayer.transform.position;
             p.y = target.y;
-            transform.position = p;
+            currentPlayer.transform.position = p;
 
             velocity = new Vector3();
         }
@@ -273,7 +271,7 @@ public class TacticsMove : LiveBar
     {
         velocity += Physics.gravity * Time.deltaTime;
 
-        if (transform.position.y > target.y)
+        if (currentPlayer.transform.position.y > target.y)
         {
             jumpingUp = false;
             fallingDown = true;
@@ -282,7 +280,7 @@ public class TacticsMove : LiveBar
 
     void MoveToEdge()
     {
-        if (Vector3.Distance(transform.position, jumpTarget) >= 0.05f)
+        if (Vector3.Distance(currentPlayer.transform.position, jumpTarget) >= 0.05f)
         {
             SetHorizotalVelocity();
         }
