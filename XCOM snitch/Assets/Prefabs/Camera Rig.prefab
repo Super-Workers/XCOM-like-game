@@ -129,17 +129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 6129332811272032800}
-  movementSpeed: 0.2
+  movementSpeed: 0.5
   movementTime: 5
-  rotationAmount: 0.5
+  rotationAmount: 0.6
   zoomAmount: {x: 0, y: -10, z: 10}
   maxZoom: 25
-  minZoom: -40
+  minZoom: -50
   newZoom: {x: 0, y: 0, z: 0}
   newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
   roof: {fileID: 0}
-  roofTiles: {fileID: 0}
 --- !u!114 &8785439578957135632
 MonoBehaviour:
   m_ObjectHideFlags: 0

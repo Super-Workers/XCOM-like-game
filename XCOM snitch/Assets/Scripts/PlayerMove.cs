@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : TacticsMove 
 {
     // Use this for initialization
-    public GameObject roofTiles;
+    //public GameObject roofTiles;
     public GameObject player1;
     public GameObject player2;
     public bool isUp = false;
@@ -20,11 +20,11 @@ public class PlayerMove : TacticsMove
     {
         player1 = GameObject.FindGameObjectWithTag("Player");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
-        roofTiles = GameObject.FindGameObjectWithTag("Roof");
+        //roofTiles = GameObject.FindGameObjectWithTag("Roof");
         currentPlayer = player1;
         Tile.player = currentPlayer;
         animator = currentPlayer.GetComponent<Animator>();
-        roofTiles.SetActive(false);
+        //roofTiles.SetActive(false);
     }
 
 	// Update is called once per frame
@@ -93,17 +93,17 @@ public class PlayerMove : TacticsMove
 
             RaycastHit hit;
             
-            if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderUp")) && !isUp)
-            {
-                roofTiles.SetActive(true);
-                currentPlayer.transform.position += new Vector3(1, 3, 0);
-            }
+            //if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderUp")) && !isUp)
+            //{
+            //    roofTiles.SetActive(true);
+            //    currentPlayer.transform.position += new Vector3(1, 3, 0);
+            //}
 
-            if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderDown")) && isUp)
-            {
-                roofTiles.SetActive(false);
-                currentPlayer.transform.position += new Vector3(-1, -3, 0);
-            }
+            //if (Physics.Raycast(ray, out hit, 3, 1 << LayerMask.NameToLayer("LadderDown")) && isUp)
+            //{
+            //    roofTiles.SetActive(false);
+            //    currentPlayer.transform.position += new Vector3(-1, -3, 0);
+            //}
 
         }
         else 
