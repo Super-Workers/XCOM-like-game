@@ -5,15 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
-  - Floor
-  - NPC
+  - Enemy
   - forJump
-  - Fence
+  - Ladder
+  - Roof
+  - Player 2
+  - NPC
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FogLayer
   - Water
   - UI
   - FogLayer
@@ -22,9 +24,9 @@ TagManager:
   - notGround
   - Fence
   - Inside
-  - 
-  - 
-  - 
+  - LadderUp
+  - LadderDown
+  - Enemy
   - 
   - 
   - 
