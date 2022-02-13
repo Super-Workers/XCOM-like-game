@@ -27,6 +27,7 @@ public class Camera : MonoBehaviour
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
+        roof = GameObject.FindGameObjectWithTag("Roof");
     }
 
     

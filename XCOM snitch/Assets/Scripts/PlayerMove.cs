@@ -8,9 +8,14 @@ public class PlayerMove : TacticsMove
     //public GameObject roofTiles;
     public GameObject player1;
     public GameObject player2;
+    public GameObject Enemy;
     public bool isUp = false;
+    public bool isShooting = false;
     int currentPlayer1Action = 2;
     int currentPlayer2Action = 2;
+    [SerializeField] protected LineOfSight lineOfSight1;
+    [SerializeField] protected LineOfSight lineOfSight2;
+    [SerializeField] protected LineOfSight currentLineOfSight;
 	void Start () 
 	{
         Init(); 
@@ -20,11 +25,39 @@ public class PlayerMove : TacticsMove
     {
         player1 = GameObject.FindGameObjectWithTag("Player");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        Enemy = GameObject.FindGameObjectWithTag("Enemy");
         //roofTiles = GameObject.FindGameObjectWithTag("Roof");
         currentPlayer = player1;
+        currentLineOfSight = lineOfSight1;
         Tile.player = currentPlayer;
         animator = currentPlayer.GetComponent<Animator>();
         //roofTiles.SetActive(false);
+    }
+
+    public void OnSee()
+    {
+        if (currentLineOfSight.visibleTargets.Count > 0 && currentPlayer.GetComponent<LiveBar>().currentAction != 0)
+        {
+            if (Input.GetMouseButtonUp(1))
+            {
+                Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Enemy")))
+                {
+                    Enemy.GetComponent<LiveBar>().currentLive -= 25;
+                    
+                    currentPlayer.GetComponent<LiveBar>().currentAction -= 1;
+
+                    isShooting = true;
+                }
+            }
+        }
+        else
+        {
+            isShooting = false;
+        }
     }
 
 	// Update is called once per frame
@@ -32,6 +65,8 @@ public class PlayerMove : TacticsMove
 	{
         Debug.DrawRay(currentPlayer.transform.position, currentPlayer.transform.forward);
         Debug.DrawRay(currentPlayer.transform.position, currentPlayer.transform.up);
+
+        OnSee();
 
         Tile.player = currentPlayer;
 
@@ -59,12 +94,14 @@ public class PlayerMove : TacticsMove
             if (Input.GetKeyDown(KeyCode.Alpha1) && player1.GetComponent<LiveBar>().currentAction != 0)
             {
                 currentPlayer = player1;
+                currentLineOfSight = lineOfSight1;
                 player1.GetComponent<LiveBar>().currentAction = currentPlayer1Action;
                 animator = player1.GetComponent<Animator>();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && player2.GetComponent<LiveBar>().currentAction != 0)
             {
                 currentPlayer = player2;
+                currentLineOfSight = lineOfSight2;
                 player2.GetComponent<LiveBar>().currentAction = currentPlayer2Action;
                 animator = player2.GetComponent<Animator>();
             }
@@ -76,6 +113,7 @@ public class PlayerMove : TacticsMove
                 if (currentPlayer.GetComponent<LiveBar>().currentAction == 0 && currentPlayer != player2) 
                 {
                     currentPlayer = player2;
+                    currentLineOfSight = lineOfSight2;
                     currentPlayer1Action = 2;
                     player2.GetComponent<LiveBar>().currentAction = currentPlayer2Action;
                     animator = player2.GetComponent<Animator>();
@@ -83,6 +121,28 @@ public class PlayerMove : TacticsMove
                 else if (currentPlayer.GetComponent<LiveBar>().currentAction == 0 && currentPlayer == player2)
                 {
                     currentPlayer = player1;
+                    currentLineOfSight = lineOfSight1;
+                    currentPlayer2Action = 2;
+                    player1.GetComponent<LiveBar>().currentAction = currentPlayer1Action;
+                    animator = player1.GetComponent<Animator>();
+                }
+            }
+
+            //
+            if (isShooting)
+            {
+                if (currentPlayer.GetComponent<LiveBar>().currentAction == 0 && currentPlayer != player2) 
+                {
+                    currentPlayer = player2;
+                    currentLineOfSight = lineOfSight2;
+                    currentPlayer1Action = 2;
+                    player2.GetComponent<LiveBar>().currentAction = currentPlayer2Action;
+                    animator = player2.GetComponent<Animator>();
+                }
+                else if (currentPlayer.GetComponent<LiveBar>().currentAction == 0 && currentPlayer == player2)
+                {
+                    currentPlayer = player1;
+                    currentLineOfSight = lineOfSight1;
                     currentPlayer2Action = 2;
                     player1.GetComponent<LiveBar>().currentAction = currentPlayer1Action;
                     animator = player1.GetComponent<Animator>();

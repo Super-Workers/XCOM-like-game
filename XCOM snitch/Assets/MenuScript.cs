@@ -55,4 +55,15 @@ public class MenuScript
         }
     }
 
+    [MenuItem("Tools/Assign Statics")]
+    public static void AssignStatics()
+    {
+        GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+
+        foreach (GameObject child in objects)
+        {
+            child.isStatic = true;
+        }
+    }
+
 }
