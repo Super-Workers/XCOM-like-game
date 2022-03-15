@@ -35,7 +35,7 @@ public class Camera : MonoBehaviour
     {
         HandleMovementInput();
 
-        if (newZoom.z >= 0) //&& !roofTiles.activeInHierarchy)
+        if (newZoom.z >= -10) //&& !roofTiles.activeInHierarchy)
         {
             roof.SetActive(false);
         }
