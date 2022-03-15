@@ -8,13 +8,16 @@ public class PlayerMove : TacticsMove
     //public GameObject roofTiles;
     public GameObject player1;
     public GameObject player2;
-    public GameObject Enemy;
+    public GameObject Enemy1;
+    public GameObject Enemy2;
     public bool isUp = false;
     public bool isShooting = false;
     int currentPlayer1Action = 2;
     int currentPlayer2Action = 2;
     [SerializeField] protected LineOfSight lineOfSight1;
     [SerializeField] protected LineOfSight lineOfSight2;
+    [SerializeField] protected LineOfSight lineOfSightEnemy1;
+    [SerializeField] protected LineOfSight lineOfSightEnemy2;
     [SerializeField] protected LineOfSight currentLineOfSight;
 	void Start () 
 	{
@@ -25,7 +28,8 @@ public class PlayerMove : TacticsMove
     {
         player1 = GameObject.FindGameObjectWithTag("Player");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
-        Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        Enemy1 = GameObject.FindGameObjectWithTag("Enemy1");
+        Enemy2 = GameObject.FindGameObjectWithTag("Enemy2");
         //roofTiles = GameObject.FindGameObjectWithTag("Roof");
         currentPlayer = player1;
         currentLineOfSight = lineOfSight1;
@@ -46,7 +50,7 @@ public class PlayerMove : TacticsMove
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Enemy")))
                 {
-                    Enemy.GetComponent<LiveBar>().currentLive -= 25;
+                    hit.transform.GetComponent<LiveBar>().currentLive -= 25;
                     
                     currentPlayer.GetComponent<LiveBar>().currentAction -= 1;
 
@@ -60,6 +64,27 @@ public class PlayerMove : TacticsMove
         }
     }
 
+    public void OnSeeEnemy()
+    {
+        if (lineOfSightEnemy1.visibleTargets.Count > 0)
+        {
+            Enemy1.SetActive(true);
+        }
+        else
+        {
+            Enemy1.SetActive(false);
+        }
+
+        if (lineOfSightEnemy2.visibleTargets.Count > 0)
+        {
+            Enemy2.SetActive(true);
+        }
+        else
+        {
+            Enemy2.SetActive(false);
+        }
+    }
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -67,6 +92,7 @@ public class PlayerMove : TacticsMove
         Debug.DrawRay(currentPlayer.transform.position, currentPlayer.transform.up);
 
         OnSee();
+        OnSeeEnemy();
 
         Tile.player = currentPlayer;
 
